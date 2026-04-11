@@ -1,0 +1,1 @@
+export const DEFAULT_HISTORY_STEPS = 20;

@@ -1,1 +1,1 @@
-export const DEFAULT_CLIP_DURATION = 15;
+export const DEFAULT_CLIP_DURATION = 30;

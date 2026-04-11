@@ -1,8 +1,10 @@
-import { useVideoEditorStore } from '../../../store';
+import { useAddClip, useClips, usePlayHeadPosition } from '../../../store';
 import { DEFAULT_CLIP_DURATION } from './constants';
 
 export function Actions() {
-  const { clips, playHeadPosition, addClip } = useVideoEditorStore();
+  const clips = useClips();
+  const playHeadPosition = usePlayHeadPosition();
+  const addClip = useAddClip();
 
   const handleAddClip = () => {
     addClip({

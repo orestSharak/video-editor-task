@@ -1,4 +1,3 @@
-import React from 'react';
 import { Timeline, Header, Preview } from './components';
 
 function App() {

@@ -1,7 +1,8 @@
-import { useVideoEditorStore } from '../../../store';
+import { usePlayHeadPosition, useSetPlayHeadPosition } from '../../../store';
 
 export function TimelineTrack() {
-  const { playHeadPosition, setPlayHeadPosition } = useVideoEditorStore();
+  const playHeadPosition = usePlayHeadPosition();
+  const setPlayHeadPosition = useSetPlayHeadPosition();
 
   return (
     <div className="flex flex-col gap-3 mb-4">

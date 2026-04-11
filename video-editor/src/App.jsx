@@ -1,13 +1,16 @@
 import React from 'react';
+import { Timeline, Header, Preview } from './components';
 
 function App() {
-    return (
-        <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
-            <div className="bg-primary text-primary-foreground p-6 rounded-lg shadow-lg">
-                <h1 className="text-2xl font-bold mb-2">Video Editor Task</h1>
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex flex-col gap-6">
+      <Header />
+      <main className="flex flex-col gap-8 mx-8">
+        <Preview />
+        <Timeline />
+      </main>
+    </div>
+  );
 }
 
 export default App;

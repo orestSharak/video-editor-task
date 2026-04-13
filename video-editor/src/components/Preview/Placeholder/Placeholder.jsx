@@ -2,7 +2,7 @@ import { Card, CardContent } from '@/components';
 
 export function Placeholder() {
   return (
-    <Card className="aspect-video h-80 bg-muted flex items-center justify-center">
+    <Card className="aspect-video h-80 bg-muted flex items-center justify-center ml-auto">
       <CardContent className="">
         <p className="text-muted-foreground text-sm uppercase">Preview Area</p>
       </CardContent>

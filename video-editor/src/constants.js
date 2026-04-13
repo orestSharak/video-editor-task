@@ -1,1 +1,2 @@
 export const DEFAULT_HISTORY_STEPS = 20;
+export const MAX_TIMELINE_DURATION = 100;

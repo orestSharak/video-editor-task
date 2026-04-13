@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import * as R from 'ramda';
-import { DEFAULT_HISTORY_STEPS } from './constants';
+import { DEFAULT_HISTORY_STEPS, MAX_TIMELINE_DURATION } from './constants';
 
 export const useVideoEditorStore = create((set) => ({
   clips: [],
@@ -30,6 +30,15 @@ export const useVideoEditorStore = create((set) => ({
         ...clip,
         track: nextTrack,
       };
+
+      const endTime = newClip.startTime + newClip.duration;
+
+      if (endTime > MAX_TIMELINE_DURATION) {
+        // Shortening clip to end with a timeline
+        newClip.duration = MAX_TIMELINE_DURATION - newClip.startTime;
+      }
+      // Not adding clip if starting in the timeline end
+      if (newClip.duration <= 0) return state;
 
       return {
         ...history,

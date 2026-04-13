@@ -1,21 +1,19 @@
 import { usePlayHeadPosition, useSetPlayHeadPosition } from '@/store';
 import { Slider } from '@/components';
+import { MAX_TIMELINE_DURATION } from '@/constants';
 
-export function TimelineTrack() {
+export function TimelineSlider() {
   const playHeadPosition = usePlayHeadPosition();
   const setPlayHeadPosition = useSetPlayHeadPosition();
 
   return (
-    <div className="py-4">
+    <div className="-ml-[6px]">
       <Slider
         value={[playHeadPosition]}
-        min={0}
-        max={100}
-        step={1}
+        max={MAX_TIMELINE_DURATION}
         onValueChange={(vals) => setPlayHeadPosition(vals[0])}
-        className="cursor-pointer"
+        className="cursor-pointer z-50"
       />
-      <div className="text-xs text-muted-foreground mt-3">Position: {playHeadPosition}s</div>
     </div>
   );
 }

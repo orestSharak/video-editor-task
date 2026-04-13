@@ -3,7 +3,7 @@ import { InfoBox } from './InfoBox';
 
 export function Preview() {
   return (
-    <section className="flex justify-center items-start gap-4">
+    <section className="flex justify-center items-start w-full mb-10 px-6">
       <Placeholder />
       <InfoBox />
     </section>

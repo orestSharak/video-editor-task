@@ -25,11 +25,13 @@ export function Actions() {
   };
 
   return (
-    <div className="flex justify-between mb-6">
-      <Button onClick={splitClip} disabled={!selectedClipId}>
+    <div className="flex gap-2 mb-6 justify-end">
+      <Button onClick={splitClip} disabled={!selectedClipId} size="sm">
         Split Clip
       </Button>
-      <Button onClick={handleAddClip}>Add Clip</Button>
+      <Button onClick={handleAddClip} size="sm">
+        Add Clip
+      </Button>
     </div>
   );
 }

@@ -11,5 +11,5 @@ To maintain a clear distinction between design system primitives and domain-spec
 ### 2. Custom Business Components
 * **Convention:** `PascalCase`
 * **Location:** `src/components/` (outside `ui/`)
-* **Example:** `Header.jsx`, `TimelineTrack.jsx`, `ClipItem.jsx`
+* **Example:** `Header.jsx`, `TimelineInfo.jsx`, `ClipItem.jsx`
 * **Reason:** High-level components that contain business logic or specific layouts are named as React classes/functions to make them easily searchable and distinguishable in the IDE.

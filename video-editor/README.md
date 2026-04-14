@@ -2,6 +2,10 @@
 
 A high-performance, web-based video timeline editor built with React, focusing on state predictability, performance, and a seamless user experience.
 
+
+**Live Demo:** [https://video-editor-fullstack.onrender.com](https://video-editor-fullstack.onrender.com)
+> ⚠️ **Note:** This application is hosted on a free-tier instance on Render.com. If the app hasn't been visited recently, the initial load may take **30-50 seconds** (cold start) as the server wakes up. Subsequent interactions and reloads will be fast.
+
 ## Architectural Approach
 
 The application was built with a focus on **modularity**, **data integrity**, and **state predictability**, ensuring that the complex logic of a timeline editor remains maintainable and scalable.

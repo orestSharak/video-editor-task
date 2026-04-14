@@ -23,7 +23,7 @@ I chose **Zustand** as the primary state manager. To keep the code clean and mai
 - **State**: Zustand (Slices Pattern)
 - **Utilities**: Ramda (FP Utilities)
 - **UI/UX**: Tailwind CSS + Shadcn UI + Lucide React
-- **Testing**: Vitest + React Testing Library (100% logic coverage)
+- **Testing**: Vitest + React Testing Library (almost 100% logic coverage)
 
 ## What I would improve with more time
 
@@ -33,3 +33,8 @@ I chose **Zustand** as the primary state manager. To keep the code clean and mai
 ### User Experience (UX) Enhancements
 - **Optimistic UI Updates**: For project notes, I would implement an optimistic UI pattern (potentially using the new `useOptimistic` React hook). This would allow notes to appear instantly in the list while the API call is in flight, providing a snappier feel and handling background sync errors gracefully.
 - **Drag-and-Drop Interaction:**: I would add a full drag-and-drop system (e.g., using `dnd-kit`). This would make the editor feel much more intuitive for mouse users.
+
+### Advanced Asynchronous Control (Fluture.js)
+- **Asynchrony**: Would replace standard Promises with `Fluture.js` (Futures) for complex side effects.
+- **Cancellation**: Automatically canceling API requests (REST/GraphQL) if a user navigates away or starts a new action, preventing memory leaks and race conditions.
+- **Better Error Handling**: Using Fluture’s `Reified` types to handle errors as values, eliminating the need for `try/catch` blocks and making the code more robust and composable.

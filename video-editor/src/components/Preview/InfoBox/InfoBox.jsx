@@ -16,7 +16,7 @@ export function InfoBox() {
   );
 
   return (
-    <Card className="h-60 w-80 bg-white ml-auto overflow-auto">
+    <Card className="h-80 w-80 bg-white">
       <CardHeader>
         <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
           {activeClips.length ? 'Currently Playing' : 'No Active Clips'}

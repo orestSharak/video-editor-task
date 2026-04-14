@@ -1,12 +1,17 @@
 import {
   useAddClip,
+  useCanRedo,
+  useCanUndo,
   useClips,
   usePlayHeadPosition,
+  useRedo,
   useSelectedClipId,
   useSplitClip,
+  useUndo,
 } from '@/store';
 import { DEFAULT_CLIP_DURATION } from './constants';
 import { Button } from '@/components';
+import { Redo2, Undo2 } from 'lucide-react';
 
 export function Actions() {
   const clips = useClips();
@@ -14,6 +19,10 @@ export function Actions() {
   const selectedClipId = useSelectedClipId();
   const addClip = useAddClip();
   const splitClip = useSplitClip();
+  const undo = useUndo();
+  const redo = useRedo();
+  const canUndo = useCanUndo();
+  const canRedo = useCanRedo();
 
   const handleAddClip = () => {
     addClip({
@@ -25,13 +34,23 @@ export function Actions() {
   };
 
   return (
-    <div className="flex gap-2 mb-6 justify-end">
-      <Button onClick={splitClip} disabled={!selectedClipId} size="sm">
-        Split Clip
-      </Button>
-      <Button onClick={handleAddClip} size="sm">
-        Add Clip
-      </Button>
+    <div className="flex gap-3 mb-4 align-middle">
+      <div className="flex items-center border-r pr-3 gap-1">
+        <Button variant="outline" size="icon" onClick={undo} disabled={!canUndo} aria-label="Undo">
+          <Undo2 className="h-4 w-4" />
+        </Button>
+        <Button variant="outline" size="icon" onClick={redo} disabled={!canRedo} aria-label="Redo">
+          <Redo2 className="h-4 w-4" />
+        </Button>
+      </div>
+      <div className="flex gap-2">
+        <Button onClick={splitClip} disabled={!selectedClipId} size="sm">
+          Split Clip
+        </Button>
+        <Button onClick={handleAddClip} size="sm">
+          Add Clip
+        </Button>
+      </div>
     </div>
   );
 }

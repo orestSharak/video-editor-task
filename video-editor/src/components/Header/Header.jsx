@@ -1,25 +1,12 @@
-import {
-  useCanRedo,
-  useCanUndo,
-  useRedo,
-  useSaveProject,
-  useStatus,
-  useUndo,
-  useClips,
-  useDeleteProject,
-} from '@/store';
+import { useSaveProject, useStatus, useClips, useDeleteProject } from '@/store';
 import { Button } from '@/components';
-import { Loader2, Redo2, Save, Trash2, Undo2 } from 'lucide-react';
+import { Loader2, Save, Trash2 } from 'lucide-react';
 
 export function Header() {
   const clips = useClips();
   const saveProject = useSaveProject();
   const deleteProject = useDeleteProject();
   const status = useStatus();
-  const undo = useUndo();
-  const redo = useRedo();
-  const canUndo = useCanUndo();
-  const canRedo = useCanRedo();
 
   const isPending = status === 'saving' || status === 'loading';
   const canSave = clips.length > 0 && !isPending;
@@ -33,29 +20,7 @@ export function Header() {
 
   return (
     <header className="flex items-center justify-between px-6 py-3 border-b bg-white">
-      <div className="flex items-center gap-4">
-        <h1 className="font-bold text-xl tracking-tight text-slate-900">VideoEditor</h1>
-        <div className="flex items-center border-l pl-4 gap-1">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={undo}
-            disabled={!canUndo}
-            aria-label="Undo"
-          >
-            <Undo2 className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={redo}
-            disabled={!canRedo}
-            aria-label="Redo"
-          >
-            <Redo2 className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+      <h1 className="font-bold text-xl tracking-tight text-slate-900">VideoEditor</h1>
       <div className="flex items-center gap-2">
         {status === 'saving' && (
           <span className="text-xs text-muted-foreground animate-pulse mr-2 flex items-center gap-1">

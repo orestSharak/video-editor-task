@@ -81,19 +81,18 @@ export const createProjectSlice = (set, get) => ({
       });
 
       if (!response.ok && response.status !== 204) throw new Error('Delete failed');
-      setTimeout(
-        () =>
-          set({
-            clips: [],
-            currentProjectId: null,
-            past: [],
-            future: [],
-            status: 'idle',
-            selectedClipId: null,
-            playHeadPosition: 0,
-          }),
-        1000,
-      );
+      setTimeout(() => {
+        set({
+          clips: [],
+          currentProjectId: null,
+          past: [],
+          future: [],
+          status: 'idle',
+          selectedClipId: null,
+          playHeadPosition: 0,
+        });
+        get().clearNotes();
+      }, 1000);
     } catch (err) {
       set({ error: err.message, status: 'error' });
     }

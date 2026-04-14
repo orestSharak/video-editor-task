@@ -1,16 +1,35 @@
-# React + Vite
+# Professional Video Editor Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, web-based video timeline editor built with React, focusing on state predictability, performance, and a seamless user experience.
 
-Currently, two official plugins are available:
+## Architectural Approach
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The application was built with a focus on **modularity**, **data integrity**, and **state predictability**, ensuring that the complex logic of a timeline editor remains maintainable and scalable.
 
-## React Compiler
+### State Management
+I chose **Zustand** as the primary state manager. To keep the code clean and maintainable, I implemented a **Slices Pattern**, separating logic into domain-specific modules:
+- **Project/REST API Slice**: Handles core project metadata and clip synchronization.
+- **Timeline Slice**: Manages playhead positioning, selection logic, and spatial calculations.
+- **Notes/GraphQL Slice**: Orchestrates integration with the GraphQL storage layer for real-time annotations.
+- **History Slice**: A robust Undo/Redo system built using functional programming principles to track state snapshots.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Data Flow & Logic
+- **Functional Programming**: Leveraged **Ramda.js** for state transitions, especially within the Undo/Redo logic, ensuring immutability and predictable data transformations.
+- **Hybrid API Integration**: Seamlessly combined **REST (Projects)** and **GraphQL (Notes)** within a unified store. I implemented logic to handle potential race conditions between fetching project structures and their subsequent metadata.
+- **Accessibility (A11y)**: Prioritized keyboard-first navigation. Users can navigate the timeline using `Arrows`, select clips with `Enter`/`Space`, and dismiss selections with `Escape`, all while maintaining proper focus management.
 
-## Expanding the ESLint configuration
+## Tech Stack
+- **Core**: React 18 + Vite
+- **State**: Zustand (Slices Pattern)
+- **Utilities**: Ramda (FP Utilities)
+- **UI/UX**: Tailwind CSS + Shadcn UI + Lucide React
+- **Testing**: Vitest + React Testing Library (100% logic coverage)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## What I would improve with more time
+
+### Static Type Safety (TypeScript)
+- **Migrate to TypeScript**: While the current JavaScript implementation focuses on data integrity through functional patterns, I would transition the entire codebase to TypeScript. This would eliminate a whole class of runtime errors, improve IDE autocompletion, and make complex data structures like `Clip` and `Note` much easier to refactor safely.
+
+### User Experience (UX) Enhancements
+- **Optimistic UI Updates**: For project notes, I would implement an optimistic UI pattern (potentially using the new `useOptimistic` React hook). This would allow notes to appear instantly in the list while the API call is in flight, providing a snappier feel and handling background sync errors gracefully.
+- **Drag-and-Drop Interaction:**: I would add a full drag-and-drop system (e.g., using `dnd-kit`). This would make the editor feel much more intuitive for mouse users.

@@ -24,7 +24,8 @@ export function Header() {
       <div className="flex items-center gap-2">
         {status === 'saving' && (
           <span className="text-xs text-muted-foreground animate-pulse mr-2 flex items-center gap-1">
-            <Loader2 className="h-3 w-3 animate-spin" /> Saving...
+            <Loader2 className="h-3 w-3 animate-spin" />
+            Saving...
           </span>
         )}
         <Button size="sm" onClick={saveProject} disabled={!canSave} className="gap-2">

@@ -1,17 +1,23 @@
 import * as R from 'ramda';
 import { DEFAULT_HISTORY_STEPS } from '@/constants.js';
 
-export const createHistorySlice = (set) => ({
+export const createHistorySlice = (set, get) => ({
   past: [],
   future: [],
 
-  saveToHistory: (state) => ({
+  saveToHistory: (state) => {
+    const currentState = get();
+
+    if (!currentState || !currentState.clips) return {};
     // pipe: Creates a left-to-right execution flow
     // append: Pushes the current state of clips to the end of the 'past' array
     // takeLast: Truncates the array to keep only the most recent N steps, preventing memory leaks
-    past: R.pipe(R.append(state.clips), R.takeLast(DEFAULT_HISTORY_STEPS))(state.past),
-    future: [],
-  }),
+
+    return {
+      past: R.pipe(R.append(state.clips), R.takeLast(DEFAULT_HISTORY_STEPS))(state.past),
+      future: [],
+    };
+  },
 
   undo: () =>
     set((state) => {

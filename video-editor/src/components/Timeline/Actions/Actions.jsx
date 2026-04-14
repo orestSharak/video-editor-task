@@ -10,7 +10,7 @@ import {
   useUndo,
 } from '@/store';
 import { DEFAULT_CLIP_DURATION } from './constants';
-import { Button } from '@/components';
+import { Button, TooltipTrigger, Tooltip, TooltipContent } from '@/components';
 import { Redo2, Undo2 } from 'lucide-react';
 
 export function Actions() {
@@ -36,12 +36,34 @@ export function Actions() {
   return (
     <div className="flex gap-3 mb-4 align-middle">
       <div className="flex items-center border-r pr-3 gap-1">
-        <Button variant="outline" size="icon" onClick={undo} disabled={!canUndo} aria-label="Undo">
-          <Undo2 className="h-4 w-4" />
-        </Button>
-        <Button variant="outline" size="icon" onClick={redo} disabled={!canRedo} aria-label="Redo">
-          <Redo2 className="h-4 w-4" />
-        </Button>
+        <Tooltip delayDuration={300}>
+          <TooltipTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={undo}
+              disabled={!canUndo}
+              aria-label="Undo"
+            >
+              <Undo2 className="h-4 w-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="top">Undo</TooltipContent>
+        </Tooltip>
+        <Tooltip delayDuration={300}>
+          <TooltipTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={redo}
+              disabled={!canRedo}
+              aria-label="Redo"
+            >
+              <Redo2 className="h-4 w-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="top">Redo</TooltipContent>
+        </Tooltip>
       </div>
       <div className="flex gap-2">
         <Button onClick={splitClip} disabled={!selectedClipId} size="sm">

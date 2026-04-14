@@ -22,6 +22,7 @@ export const useSetPlayHeadPosition = () =>
 export const useSetSelectedClipId = () => useVideoEditorStore((state) => state.setSelectedClipId);
 export const useAddClip = () => useVideoEditorStore((state) => state.addClip);
 export const useSplitClip = () => useVideoEditorStore((state) => state.splitClip);
+export const useMoveClip = () => useVideoEditorStore((state) => state.moveClip);
 
 // History
 export const useUndo = () => useVideoEditorStore((state) => state.undo);

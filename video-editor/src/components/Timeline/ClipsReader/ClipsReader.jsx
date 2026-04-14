@@ -1,4 +1,13 @@
-import { useClips, useError, useFetchProjects, usePlayHeadPosition, useStatus } from '@/store';
+import {
+  useClips,
+  useError,
+  useFetchProjects,
+  useMoveClip,
+  usePlayHeadPosition,
+  useSelectedClipId,
+  useSetSelectedClipId,
+  useStatus,
+} from '@/store';
 import { Clip } from './Clip';
 import { useEffect } from 'react';
 import { AlertCircle } from 'lucide-react';
@@ -10,12 +19,40 @@ export function ClipsReader() {
   const fetchProjects = useFetchProjects();
   const status = useStatus();
   const error = useError();
+  const selectedClipId = useSelectedClipId();
+  const setSelectedClipId = useSetSelectedClipId();
+  const moveClip = useMoveClip();
 
   useEffect(() => {
     fetchProjects().catch((error) => {
       console.error(error);
     });
   }, [fetchProjects]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const isSlider = event.target.getAttribute('role') === 'slider';
+      if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA' || isSlider)
+        return;
+
+      if (!selectedClipId) return;
+
+      if (event.key === 'Escape') {
+        setSelectedClipId(null);
+      }
+
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        moveClip('left');
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        moveClip('right');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedClipId, moveClip, setSelectedClipId]);
 
   if (status === 'loading') {
     return (

@@ -1,7 +1,7 @@
 import * as R from 'ramda';
-import { MAX_TIMELINE_DURATION } from '@/constants';
+import { DEFAULT_TIMELINE_STEP, MAX_TIMELINE_DURATION } from '@/constants';
 
-export const createTimelineSlice = (set) => ({
+export const createTimelineSlice = (set, get) => ({
   clips: [],
   playHeadPosition: 0,
   selectedClipId: null,
@@ -85,6 +85,37 @@ export const createTimelineSlice = (set) => ({
         clips: newClips,
         selectedClipId: rightClip.id,
       };
+    });
+  },
+
+  moveClip: (direction) => {
+    const state = get();
+    const { selectedClipId, clips, saveToHistory } = get();
+
+    if (!selectedClipId || !saveToHistory) return;
+
+    const step = DEFAULT_TIMELINE_STEP;
+    const history = state.saveToHistory(state);
+
+    const updatedClips = clips.map((clip) => {
+      if (clip.id === selectedClipId) {
+        let newStart = direction === 'left' ? clip.startTime - step : clip.startTime + step;
+
+        // Prevent go out of the beginning of the timeline
+        if (newStart < 0) newStart = 0;
+        // Prevent go out of the end of the timeline
+        if (newStart + clip.duration > MAX_TIMELINE_DURATION) {
+          newStart = MAX_TIMELINE_DURATION - clip.duration;
+        }
+
+        return { ...clip, startTime: newStart };
+      }
+      return clip;
+    });
+
+    set({
+      ...history,
+      clips: updatedClips,
     });
   },
 });

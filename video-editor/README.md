@@ -42,3 +42,15 @@ I chose **Zustand** as the primary state manager. To keep the code clean and mai
 - **Asynchrony**: Would replace standard Promises with `Fluture.js` (Futures) for complex side effects.
 - **Cancellation**: Automatically canceling API requests (REST/GraphQL) if a user navigates away or starts a new action, preventing memory leaks and race conditions.
 - **Better Error Handling**: Using Fluture’s `Reified` types to handle errors as values, eliminating the need for `try/catch` blocks and making the code more robust and composable.
+
+## AI Usage
+
+Below are the logs of some targeted sessions:
+1. https://chatgpt.com/s/t_69dea8e8c1748191a145ea8c95370336 - Zustand i Slices Pattern
+2. https://chatgpt.com/s/t_69deaa641e7c81919dc3776f9799a6a1 - Ramda
+3. https://chatgpt.com/s/t_69deab175bc4819194d718dc98297a49 - Race condition
+4. https://chatgpt.com/s/t_69deab8adbf881918e1e34c2642a22a6 - Tailwind, TimeLine
+5. https://chatgpt.com/s/t_69dea993d4a481919385864c920e9952 - Vitest / React Testing Library
+6. https://chatgpt.com/s/t_69dea9ff7f6c81918551d212ffbf6d92 - API Mocks
+7. https://chatgpt.com/s/t_69deac301e1481918153294b02f211ad - Fluture
+8. https://chatgpt.com/s/t_69deaabd17808191bbd81a83499ea257 - Express server

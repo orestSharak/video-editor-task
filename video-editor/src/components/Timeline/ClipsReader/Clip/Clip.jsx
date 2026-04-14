@@ -1,8 +1,9 @@
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components';
 import { useSelectedClipId, useSetSelectedClipId } from '@/store';
 import { MAX_TIMELINE_DURATION } from '@/constants';
+import { memo } from 'react';
 
-export function Clip({ id, name, startTime, duration, track }) {
+export const Clip = memo(function Clip({ id, name, startTime, duration, track }) {
   const selectedClipId = useSelectedClipId();
   const isSelected = selectedClipId === id;
   const setSelectedClipId = useSetSelectedClipId();
@@ -42,4 +43,4 @@ export function Clip({ id, name, startTime, duration, track }) {
       <TooltipContent side="top">{name}</TooltipContent>
     </Tooltip>
   );
-}
+});
